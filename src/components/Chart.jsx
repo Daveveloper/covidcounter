@@ -10,11 +10,11 @@ const Chart = ({yes, no}) => {
       data: [yes, no],
       backgroundColor: [
         '#db3a34',
-        '#00a896',
+        '#ffffff',
       ],
       hoverBackgroundColor: [
         '#9e2a2b',
-        '#028090',
+        '#d0d0d0',
       ],
       borderColor: 'rgba(0, 0, 0, 1)',
     }],

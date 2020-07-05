@@ -20,7 +20,6 @@ const DashBoard = () => {
   let date = '';
   if (Date) {
     date = Date.substring(0,10);
-    console.log(date);
   }
   return (
     <Dash>
@@ -35,11 +34,8 @@ const DashBoard = () => {
         }
       </ExtraInfo>
       <p>Ultima actualizacion: <span>{datos && moment(date).format('DD / MMMM / YYYY')}</span></p>
+      <hr/>
       <Graphics/>
-      <small>
-        <span>#covidcount</span> no almacena informacion de ningun tipo de sus usuarios, el unico fin de esta aplicacion es comparar la informacion suministrada por las autoridades sanitarias.<br/>
-        <span>Por favor comparta esta aplicacion con todos los que pueda.</span>
-      </small>
     </Dash>
   )
 }

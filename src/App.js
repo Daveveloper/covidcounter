@@ -1,5 +1,6 @@
 import React from 'react';
 import Dashboard from './components/Dashboard';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -7,8 +8,12 @@ function App() {
       <header>
         <h2 className='title'>#Covid<span>Count</span></h2>
       </header>
-      <p style={{ padding: 10}}><span>#covidcount</span> se diseño con el proposito de hacer un experimento social sobre el COVID-19.</p>
+      <hr/>
+      <p style={{ padding: 10}}>
+        <span className='label'><span style={{color: 'var(--secondary)'}}>Mae Covid</span> ya dejenos salir...</span>
+      </p>
       <Dashboard/>
+      <Footer/>
     </div>
   );
 }

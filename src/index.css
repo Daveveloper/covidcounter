@@ -4,10 +4,10 @@ font-family: 'Bebas Neue', cursive;
 font-family: 'Montserrat', sans-serif;
 */
 :root {
-  --primary: #19a02b;
+  --primary: #e71d36;
   --secondary: #f25c54;
-  --accent: #20a593;
-  --accent2: #084c61;
+  --accent: #e76f51;
+  --accent2: #8a8a8a;
   --light: #ffffff;
   --dark: #1f1f1f;
 }
@@ -57,8 +57,8 @@ button {
   padding: 10px;
   margin: 10px;
   display: block;
-  background: var(--accent);
-  color: var(--light);
+  background: var(--light);
+  color: var(--dark);
   width: 100px;
   transition: background 500ms ease-in-out;
   cursor: pointer;
@@ -78,7 +78,35 @@ button:disabled {
 
 .btnRed {
   background: #db3a34;
+  color: var(--light);
 }
 .btnRed:hover {
   background: #911;
+}
+
+.label {
+  border: 1px solid var(--secondary);
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--light);
+}
+
+.btnCoffee {
+  display: block;
+  width: 50%;
+  margin: 20px auto;
+  background-color: var(--secondary);
+  color: white;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--secondary), rgba(0, 0, 0, 0));
+}
+
+footer {
+  background: #000000;
+  padding: 10px 0;
+  font-size: 0.8rem;
 }
