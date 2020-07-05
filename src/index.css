@@ -9,7 +9,12 @@ font-family: 'Montserrat', sans-serif;
   --accent: #e76f51;
   --accent2: #8a8a8a;
   --light: #ffffff;
-  --dark: #1f1f1f;
+  --dark: #181818;
+}
+
+.App > h1 {
+  font-size: 4rem;
+  letter-spacing: 3px;
 }
 
 body, html {
@@ -109,4 +114,33 @@ footer {
   background: #000000;
   padding: 10px 0;
   font-size: 0.8rem;
+}
+
+.lineChart {
+  width:100%;
+  margin:30px auto;
+  background: var(--light);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.input {
+  background-color: transparent;
+  padding: 7px 10px;
+  border: none;
+  border: 1px solid var(--light);
+  border-radius: 5px;
+  width: 300px;
+  margin: 20px;
+}
+.input::placeholder {
+  color: var(--light);
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+@media(min-width: 768px) {
+  .lineChart {
+    width: 80%;
+  }
 }

@@ -1,90 +1,78 @@
 import React, {useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
 import Chart from './Chart';
-import {MdClear, MdDone} from 'react-icons/md'
-import LineChart from './LineChart';
 import {firebaseContext} from './../firebase';
+import {FaUserSecret} from 'react-icons/fa';
 
 const Graphics = () => {
 
-  const [data, setData] = useState([]);
   const [voto, setVoto] = useState(localStorage.getItem('voto'));
+  const [casosPositivos, setCasosPositivos] = useState(0);
+  const [casosNegativos, setCasosNegativos] = useState(0);
 
   const {firebase} = useContext(firebaseContext);
 
   useEffect(() =>{
     const fetchData = async () => {
-      const documents = await firebase.db.collection('confirmados').get();
-      const casos = documents.docs.map(doc => {
-        return {
-          id: doc.id,
-          ...doc.data(),
-        }
-      });
-      setData(casos[0]);
+      const positives = await firebase.db.collection('votes').where('answer', '==', 'yes').get();
+      let casos = positives.docs.length;
+      setCasosPositivos(casos);
+
+      const negatives = await firebase.db.collection('votes').where('answer', '==', 'no').get();
+      casos = negatives.docs.length;
+      setCasosNegativos(casos);
     };
+
     fetchData();
-  }, []);
+    console.log('Corriendo...');
+  }, [casosNegativos, casosPositivos]);
 
-  const handleYes = () => {
+
+
+  const handleVotes = (e) => {
+    e.preventDefault();
+    const answer = e.target.dataset.vote;
+    const vote = {
+      answer,
+      creado: Date.now(),
+    };
+    firebase.db.collection('votes').add(vote);
     localStorage.setItem('voto', true);
     setVoto(localStorage.getItem('voto'));
-    const count = data.positivos + 1;
-
-    firebase.db.collection('confirmados').doc(data.id).set({
-      ...data,
-      positivos: count,
-    })
-
-    setData({
-      ...data,
-      positivos: count,
-    });
-  };
-
-  const handleNo = () => {
-    localStorage.setItem('voto', true);
-    setVoto(localStorage.getItem('voto'));
-    const count = data.negativos + 1;
-
-    firebase.db.collection('confirmados').doc(data.id).set({
-      ...data,
-      negativos: count,
-    })
-
-    setData({
-      ...data,
-      negativos: count,
-    });
+    if (answer === 'yes') {
+      setCasosPositivos(casosPositivos + 1);
+    } else {
+      setCasosNegativos(casosNegativos + 1);
+    }
   }
-
 
   return (
     <Container>
       <div>
-        <h2>¿ha sido diagnosticado positivo con COVID-19?</h2>
-        <Legend>Su respuesta sera utilizada unica y exclusivamente con el fin de completar esta encuesta.<br/> Apelamos a la buena voluntad de los usuarios ya que no utilizamos ningun tipo de informacion con la que podamos diferenciar a cada quien.</Legend>
+        <h1>¿ha sido diagnosticado positivo con COVID-19?</h1>
+        <Legend><FaUserSecret size={24} style={{verticalAlign: 'bottom'}}/> Encuesta anonima</Legend>
+        <Legend>Su respuesta sera utilizada unica y exclusivamente con el fin de completar esta encuesta.</Legend>
         {
           !voto ?
           <div>
-            <button className="btnRed" onClick={handleYes}><MdDone style={{verticalAlign: 'bottom'}} size={16}/> SI</button>
-            <button onClick={handleNo}><MdClear style={{verticalAlign: 'bottom'}} size={16}/> NO</button>
+            <button
+              data-vote='yes'
+              className="btnRed"
+              onClick={handleVotes}>
+                SI
+            </button>
+            <button
+              data-vote='no'
+              onClick={handleVotes}>
+                NO
+            </button>
           </div> :
           <span>Gracias por su respuesta</span>
         }
       </div>
       <div>
-      {
-        data &&
-        <>
-          <Chart yes={data.positivos} no={data.negativos}/>
-          <Number>No: {data.negativos}</Number> <Number yes>Si: {data.positivos}</Number>
-        </>
-      }
-      </div>
-      <hr/>
-      <div>
-        <LineChart/>
+        <Chart yes={casosPositivos} no={casosNegativos}/>
+        <Number>No: {casosNegativos}</Number> <Number yes>Si: {casosPositivos}</Number>
       </div>
     </Container>
   )
@@ -99,7 +87,6 @@ const Container = styled.div`
 
     @media(min-width: 768px) {
       div:nth-child(2) {
-      width: 50%;
       margin: 40px auto;
     }
   }
@@ -114,7 +101,6 @@ const Number = styled.h2`
 `;
 
 const Legend = styled.p`
-  width: 100%;
   margin: auto;
   margin-bottom: 10px;
   font-size: 0.85rem;

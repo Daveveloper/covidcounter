@@ -7,7 +7,7 @@ const Footer = () => {
     <FlexFooter>
       <div>
         <small>
-          <span>#covidcount</span> no almacena informacion de ningun tipo de sus usuarios, el unico fin de esta aplicacion es comparar la informacion suministrada por las autoridades sanitarias.<br/>
+          <span>#covidcount</span> tiene como unico fin ser una fuente confiable de las estadisticas sobre el avance del Covid-19 en Costa Rica.<br/>
           <span>Por favor comparta esta aplicacion con todos los que pueda.</span><br/>
           <span
             style={{
@@ -19,7 +19,7 @@ const Footer = () => {
           </span>
         </small>
       </div>
-      <div>
+      {/* <div>
         <p><FaCoffee size={18} style={{verticalAlign: 'bottom'}}/> Invitame un cafe</p>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_donations" />
@@ -29,7 +29,7 @@ const Footer = () => {
           <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
           <img alt="" border="0" src="https://www.paypal.com/en_CR/i/scr/pixel.gif" width="1" height="1" />
         </form>
-      </div>
+      </div> */}
     </FlexFooter>
   )
 }

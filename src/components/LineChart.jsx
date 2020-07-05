@@ -25,17 +25,17 @@ const LineChart = () => {
   }, [state]);
 
   return (
-    <div>
+    <div className='lineChart'>
       <Line
         data={{
           labels: [...days.slice(-15)],
           datasets: [
             {
-              label: 'Casos totales por dia.',
+              label: 'Acumulado por dia',
               fill: false,
               lineTension: 0.5,
-              pointBackgroundColor: '#fff',
-              pointBorderColor: '#fff',
+              pointBackgroundColor: '#db3a34',
+              pointBorderColor: '#db3a34',
               backgroundColor: '#db3a34',
               borderColor: '#db3a34',
               borderWidth: 2,
@@ -48,13 +48,13 @@ const LineChart = () => {
             display: true,
             text: 'Covid-19 History',
             fontSize: 15,
-            fontColor: '#fff',
+            fontColor: '#000',
           },
           legend: {
             display: true,
             position: 'top',
             labels: {
-              fontColor: 'rgb(255, 255, 255)',
+              fontColor: 'rgb(0,0,0)',
             }
           },
         }}

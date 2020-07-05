@@ -23,7 +23,24 @@ const Chart = ({yes, no}) => {
 
   return (
     <div>
-      <Pie data={data}/>
+      <Pie
+        data={data}
+        options={{
+          title: {
+            display: true,
+            text: 'Resultados de la encuesta',
+            fontSize: 20,
+            fontColor: '#ffffff',
+          },
+          legend: {
+            display: true,
+            position: 'top',
+            labels: {
+              fontColor: '#fff',
+            }
+          },
+        }}
+      />
     </div>
   )
 }

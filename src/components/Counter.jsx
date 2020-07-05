@@ -44,8 +44,7 @@ const Panel = styled.div`
   }
 
   @media (min-width: 768px) {
-    width: 45%;
-
+    flex: 1;
     h1 {
       font-size: 7rem;
     }
