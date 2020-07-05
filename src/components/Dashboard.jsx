@@ -4,6 +4,7 @@ import Counter from './Counter';
 import apiclient from './../api';
 import moment from 'moment';
 import Graphics from './Graphics';
+import {MdUpdate} from 'react-icons/md';
 
 const DashBoard = () => {
 
@@ -33,7 +34,7 @@ const DashBoard = () => {
           </>
         }
       </ExtraInfo>
-      <p>Ultima actualizacion: <span>{datos && moment(date).format('DD / MMMM / YYYY')}</span></p>
+      <p><MdUpdate size={28} style={{verticalAlign: 'middle'}}/> : <span>{datos && moment(date).format('DD / MMMM / YYYY')}</span></p>
       <hr/>
       <Graphics/>
     </Dash>
